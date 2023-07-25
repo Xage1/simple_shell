@@ -8,6 +8,7 @@
  */
 int shell_main(char **argv, int count)
 {
+int exit_status = 0;
 char *buff = NULL, **av = NULL;
 ssize_t retour;
 
@@ -22,6 +23,16 @@ if (av[0] == NULL)
 {
 free_mem(1, buff), free_array(av);
 return (0);
+}
+if (strcmp(av[0], "exit") == 0)
+{
+if (av[1] != NULL)
+{
+exit_status = atoi(av[1]);
+}
+free_mem(1, buff);
+free_array(av);
+exit(exit_status);
 }
 
 if (strcmp(av[0], "clear") == 0)
