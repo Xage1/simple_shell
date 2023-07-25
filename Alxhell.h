@@ -44,6 +44,8 @@ int change_direct(char **av, int count);
 void print_err(char **argv, int count, char **av);
 int shell_main(char **argv, int count);
 int write_int_err(int number);
+void clear_screen(void);
+
 
 /* printf */
 #define BUFSIZE 1024

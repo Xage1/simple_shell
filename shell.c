@@ -24,6 +24,13 @@ free_mem(1, buff), free_array(av);
 return (0);
 }
 
+if (strcmp(av[0], "clear") == 0)
+{
+clear_screen();
+free_mem(1, buff), free_array(av);
+return (0);
+}
+
 if (av[0][0] != '/' && av[0][0] != '.')
 {
 retour = check_built_ins(av, buff, count);

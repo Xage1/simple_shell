@@ -10,6 +10,7 @@ int main(int argc __attribute__((unused)), char **argv)
 	int count = 0, retour, status;
 	pid_t id;
 
+
 	signal(SIGINT, handler);
 	while (1)
 	{
