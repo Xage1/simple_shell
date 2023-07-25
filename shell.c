@@ -42,6 +42,20 @@ free_mem(1, buff), free_array(av);
 return (0);
 }
 
+if (strcmp(av[0], "setenv") == 0)
+{
+setenv_command(av);
+free_mem(1, buff), free_array(av);
+return (0);
+}
+
+if (strcmp(av[0], "unsetenv") == 0)
+{
+unsetenv_command(av);
+free_mem(1, buff), free_array(av);
+return (0);
+}
+
 if (av[0][0] != '/' && av[0][0] != '.')
 {
 retour = check_built_ins(av, buff, count);

@@ -1,4 +1,5 @@
 #include "Alxhell.h"
+
 /**
  * _echo - function echo
  *
@@ -6,21 +7,41 @@
  *
  * Return: 0
  */
+
 int _echo(char **av)
 {
-	int pid;
+int i = 1;
+char *var_value;
 
-	if (av[2])
-		write(2, "Too many arguments\n", 20);
-	else
-	{
-		if (_strcmp("$$", av[1]) == 0)
-		{
-			pid = getpid();
-			_printf("%i\n", pid);
-		}
-		else
-			_printf("%s\n", av[1]);
-	}
-	return (0);
+if (av[1] == NULL)
+{
+_printf("\n");
+return (0);
+}
+
+while (av[i])
+{
+if (av[i][0] == '$')
+{
+
+char *var_name = av[i] + 1;
+var_value = getenv(var_name);
+
+if (var_value)
+_printf("%s", var_value);
+}
+else
+{
+_printf("%s", av[i]);
+}
+
+if (av[i + 1] != NULL)
+_printf(" ");
+else
+_printf("\n");
+
+i++;
+}
+
+return (0);
 }
