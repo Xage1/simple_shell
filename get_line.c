@@ -6,27 +6,31 @@
  * _getLine - recodage getLine
  * @file: file
  *
- * Return: line read
+ * Return: line read (should be freed by the caller)
  */
 
 char *_getLine(const int file)
 {
 	static char readding[BUF_SIZE];
-	static int index = BUF_SIZE;
+	static int index;
 	int getting = 0;
 	int count = 0;
 	char *get = NULL;
 
-	if (getting == 0 && index >= (BUF_SIZE - 1))
+	if (getting == 0 && index >= BUF_SIZE)
 	{
 		index = 0;
-		getting = read(file, readding, BUF_SIZE + 1);
+		getting = read(file, readding, BUF_SIZE);
+		if (getting == -1)
+			return (NULL);
 		readding[getting] = '\0';
 	}
 
-	if (index <= BUF_SIZE && readding[index] != '\0')
+	if (index < BUF_SIZE && readding[index] != '\0')
 	{
-		get = malloc((sizeof(*get) * BUF_SIZE));
+		get = malloc(BUF_SIZE);
+		if (get == NULL)
+			return (NULL);
 		while (readding[index] != '\n' && readding[index] != '\0')
 			get[count++] = readding[index++];
 		get[count] = '\0';
@@ -35,4 +39,3 @@ char *_getLine(const int file)
 	}
 	return (get);
 }
-

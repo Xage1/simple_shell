@@ -4,6 +4,10 @@
 #define DELLS 0
 #define DIDA 1
 #define BUF 1000
+#define MAX_ALIASES 100
+#define MAX_ALIAS_NAME_LENGTH 50
+#define MAX_ALIAS_VALUE_LENGTH 100
+
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -19,6 +23,8 @@
 
 
 extern char **environ;
+extern int num_aliases;
+
 
 int number_of_words(char *str, char *separator);
 char **fill_argum(char *buf, char *separator);
@@ -44,6 +50,26 @@ int change_direct(char **av, int count);
 void print_err(char **argv, int count, char **av);
 int shell_main(char **argv, int count);
 int write_int_err(int number);
+void clear_screen(void);
+void setenv_command(char *args[]);
+void unsetenv_command(char *args[]);
+void handle_alias_command(char *arguments[]);
+void print_aliases(const char *name);
+
+
+/**
+ * struct Alias - Represents an alias, storing its name and value.
+ * @name: The name of the alias.
+ * @value: The value of the alias.
+ */
+
+struct Alias
+{
+char name[MAX_ALIAS_NAME_LENGTH];
+char value[MAX_ALIAS_VALUE_LENGTH];
+};
+
+struct Alias aliases[MAX_ALIASES];
 
 /* printf */
 #define BUFSIZE 1024

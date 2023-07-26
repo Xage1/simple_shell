@@ -1,5 +1,9 @@
 #include "Alxhell.h"
 
+
+struct Alias aliases[MAX_ALIASES];
+int num_aliases = 0;
+
 /**
  * shell_main - shell program
  * @argv: name of executable
@@ -8,6 +12,7 @@
  */
 int shell_main(char **argv, int count)
 {
+int exit_status = 0;
 char *buff = NULL, **av = NULL;
 ssize_t retour;
 
@@ -20,6 +25,45 @@ return (1);
 av = fill_argum(buff, " \t"), count++;
 if (av[0] == NULL)
 {
+free_mem(1, buff), free_array(av);
+return (0);
+}
+
+if (strcmp(av[0], "alias") == 0)
+{
+handle_alias_command(av);
+free_mem(1, buff), free_array(av);
+return (0);
+}
+
+if (strcmp(av[0], "exit") == 0)
+{
+if (av[1] != NULL)
+{
+exit_status = atoi(av[1]);
+}
+free_mem(1, buff);
+free_array(av);
+exit(exit_status);
+}
+
+if (strcmp(av[0], "clear") == 0)
+{
+clear_screen();
+free_mem(1, buff), free_array(av);
+return (0);
+}
+
+if (strcmp(av[0], "setenv") == 0)
+{
+setenv_command(av);
+free_mem(1, buff), free_array(av);
+return (0);
+}
+
+if (strcmp(av[0], "unsetenv") == 0)
+{
+unsetenv_command(av);
 free_mem(1, buff), free_array(av);
 return (0);
 }
