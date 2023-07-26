@@ -7,7 +7,8 @@
 #define MAX_ALIASES 100
 #define MAX_ALIAS_NAME_LENGTH 50
 #define MAX_ALIAS_VALUE_LENGTH 100
-
+#define DELIMITER ";"
+#define BUFFER_SIZE 1024
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -55,6 +56,7 @@ void unsetenv_command(char *args[]);
 void handle_alias_command(char *arguments[]);
 void print_aliases(const char *name);
 char *handle_variable_replacement(char *command, int status, int pid);
+void command_separate(char *comm);
 
 
 /**
