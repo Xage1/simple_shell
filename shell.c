@@ -1,8 +1,6 @@
 #include "Alxhell.h"
 
 
-struct Alias aliases[MAX_ALIASES];
-int num_aliases = 0;
 
 /**
  * shell_main - shell program

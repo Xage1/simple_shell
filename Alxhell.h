@@ -23,9 +23,8 @@
 
 
 extern char **environ;
-extern int num_aliases;
 
-
+int get_num_aliases(void);
 int number_of_words(char *str, char *separator);
 char **fill_argum(char *buf, char *separator);
 int prompt(char **buff);
@@ -55,6 +54,7 @@ void setenv_command(char *args[]);
 void unsetenv_command(char *args[]);
 void handle_alias_command(char *arguments[]);
 void print_aliases(const char *name);
+char *handle_variable_replacement(char *command, int status, int pid);
 
 
 /**
@@ -70,6 +70,7 @@ char value[MAX_ALIAS_VALUE_LENGTH];
 };
 
 struct Alias aliases[MAX_ALIASES];
+
 
 /* printf */
 #define BUFSIZE 1024
