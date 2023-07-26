@@ -1,5 +1,18 @@
 #include "Alxhell.h"
 
+static int num_aliases;
+
+/**
+ * get_num_aliases - Get the current value of num_aliases
+ *
+ * Return: The value of num_aliases.
+ */
+
+int get_num_aliases(void)
+{
+return (num_aliases);
+}
+
 /**
  * find_alias - Finds an alias by its name.
  * @name: The name of the alias to find.
